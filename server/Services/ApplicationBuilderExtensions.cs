@@ -1,6 +1,6 @@
 using Microsoft.Net.Http.Headers;
 
-namespace BffMicrosoftEntraID.Server.Services;
+namespace BffOidc.Server.Services;
 
 public static class ApplicationBuilderExtensions
 {

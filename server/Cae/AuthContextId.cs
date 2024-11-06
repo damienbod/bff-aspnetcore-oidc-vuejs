@@ -1,4 +1,4 @@
-﻿namespace BffMicrosoftEntraID.Server;
+﻿namespace BffOidc.Server;
 
 /// <summary>
 /// Consts used for the defined AuthContext. The AuthContext can be created using MS Graph.

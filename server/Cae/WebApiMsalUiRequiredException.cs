@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Net.Http.Headers;
 
-namespace BffMicrosoftEntraID.Server;
+namespace BffOidc.Server;
 
 /// <summary>
 /// This exception class is used to pass HTTP CAE unauthorized responses from a Httpclient and 

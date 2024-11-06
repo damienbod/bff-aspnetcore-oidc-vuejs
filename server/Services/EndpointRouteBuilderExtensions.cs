@@ -1,4 +1,4 @@
-namespace BffMicrosoftEntraID.Server.Services;
+namespace BffOidc.Server.Services;
 
 public static class EndpointRouteBuilderExtensions
 {

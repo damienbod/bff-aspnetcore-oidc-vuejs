@@ -1,4 +1,4 @@
-﻿namespace BffMicrosoftEntraID.Server;
+﻿namespace BffOidc.Server;
 
 /// <summary>
 /// Claims challenges, claims requests, and client capabilities

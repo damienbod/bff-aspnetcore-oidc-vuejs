@@ -1,4 +1,4 @@
-﻿using BffMicrosoftEntraID.Server.Models;
+﻿using BffOidc.Server.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,4 +1,4 @@
-﻿namespace BffMicrosoftEntraID.Server.Models;
+﻿namespace BffOidc.Server.Models;
 
 public class ClaimValue
 {
