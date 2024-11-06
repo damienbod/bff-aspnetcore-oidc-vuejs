@@ -1,6 +1,5 @@
 ﻿using BffOidc.Server;
 using BffOidc.Server.Services;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
@@ -23,9 +22,6 @@ services.AddSecurityHeaderPolicies()
       return SecurityHeadersDefinitions.GetHeaderPolicyCollection(builder.Environment.IsDevelopment(),
         configuration["MicrosoftEntraID:Instance"]);
   });
-
-services.AddScoped<MsGraphService>();
-services.AddScoped<CaeClaimsChallengeService>();
 
 services.AddAntiforgery(options =>
 {

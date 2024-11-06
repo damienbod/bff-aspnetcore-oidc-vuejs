@@ -1,6 +1,6 @@
 # bff-aspnetcore-vuejs
 
-[![.NET and npm build](https://github.com/damienbod/bff-aspnetcore-vuejs/actions/workflows/dotnet.yml/badge.svg)](https://github.com/damienbod/bff-aspnetcore-vuejs/actions/workflows/dotnet.yml) [![Build and deploy to Azure Web App](https://github.com/damienbod/bff-aspnetcore-vuejs/actions/workflows/azure-webapps-dotnet-core.yml/badge.svg)](https://github.com/damienbod/bff-aspnetcore-vuejs/actions/workflows/azure-webapps-dotnet-core.yml) [![License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://github.com/damienbod/bff-aspnetcore-vuejs/blob/main/LICENSE)
+[![.NET and npm build](https://github.com/damienbod/bff-aspnetcore-oidc-vuejs/actions/workflows/dotnet.yml/badge.svg)](https://github.com/damienbod/bff-aspnetcore-oidc-vuejs/actions/workflows/dotnet.yml) [![License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://github.com/damienbod/bff-aspnetcore-oidc-vuejs/blob/main/LICENSE)
 
 [Implement a secure web application using Vue.js and an ASP.NET Core server](https://damienbod.com/2023/10/02/implement-a-secure-web-application-using-vue-js-and-an-asp-net-core-server/)
 
