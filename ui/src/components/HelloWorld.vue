@@ -48,17 +48,6 @@ function getUserProfile() {
 	});
 }
 
-function getGraphApiDataUsingApi() {
-	axios.get(`${getCurrentHost()}/api/GraphApiData`, axiosConfig)
-		.then((response: any) => {
-			jsonResponse.value  =  response.data;
-			return response.data;
-		})
-		.catch((error: any) => {
-			alert(error);
-	});
-}
-
 function getCurrentHost() {
 	const host = window.location.host;
 	const url = `${window.location.protocol}//${host}`;
