@@ -25,7 +25,7 @@ services.AddSecurityHeaderPolicies()
   .SetPolicySelector((PolicySelectorContext ctx) =>
   {
       return SecurityHeadersDefinitions.GetHeaderPolicyCollection(builder.Environment.IsDevelopment(),
-        configuration["MicrosoftEntraID:Instance"]);
+        configuration["OpenIDConnectSettings:Authority"]);
   });
 
 services.AddAntiforgery(options =>

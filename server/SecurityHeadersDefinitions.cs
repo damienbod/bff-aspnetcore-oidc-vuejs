@@ -38,7 +38,6 @@ public static class SecurityHeadersDefinitions
                     builder.AddStyleSrc().WithNonce().UnsafeInline();
                 }
 
-
                 builder.AddScriptSrc().WithNonce().UnsafeInline();
             })
             .RemoveServerHeader()
