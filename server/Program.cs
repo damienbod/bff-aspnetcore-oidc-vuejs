@@ -1,10 +1,5 @@
 ﻿using BffOidc.Server;
 using BffOidc.Server.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Web;
-using Microsoft.Identity.Web.UI;
-using Microsoft.IdentityModel.Logging;
-using NetEscapades.AspNetCore.SecurityHeaders.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,13 +29,29 @@ services.AddAntiforgery(options =>
 services.AddHttpClient();
 services.AddOptions();
 
-var scopes = configuration.GetValue<string>("DownstreamApi:Scopes");
-string[] initialScopes = scopes!.Split(' ');
+services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+})
+.AddCookie()
+.AddOpenIdConnect(options =>
+{
+    builder.Configuration.GetSection("OpenIDConnectSettings").Bind(options);
+    options.Authority = builder.Configuration["OpenIDConnectSettings:Authority"];
+    options.ClientId = builder.Configuration["OpenIDConnectSettings:ClientId"];
+    options.ClientSecret = builder.Configuration["OpenIDConnectSettings:ClientSecret"];
 
-services.AddMicrosoftIdentityWebAppAuthentication(configuration, "MicrosoftEntraID")
-    .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-    .AddMicrosoftGraph("https://graph.microsoft.com/v1.0", initialScopes)
-    .AddInMemoryTokenCaches();
+    options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.ResponseType = OpenIdConnectResponseType.Code;
+
+    options.SaveTokens = true;
+    options.GetClaimsFromUserInfoEndpoint = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        NameClaimType = "name"
+    };
+});
 
 services.AddControllersWithViews(options =>
     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
@@ -59,6 +70,7 @@ builder.Services.AddReverseProxy()
 var app = builder.Build();
 
 IdentityModelEventSource.ShowPII = true;
+JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
 if (app.Environment.IsDevelopment())
 {
@@ -71,13 +83,9 @@ else
 }
 
 app.UseSecurityHeaders();
-
 app.UseHttpsRedirection();
-
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseNoUnauthorizedRedirect("/api");
 
 app.UseAuthentication();
