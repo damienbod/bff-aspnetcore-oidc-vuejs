@@ -16,7 +16,7 @@ The ASP.NET Core project is setup to run in development and production. In produ
 Configure the YARP reverse proxy to match the Vue.js URL. This is only required in development. I always use HTTPS in development and the port needs to match the Vue.js developement env (vite.config.js).
 
 ```json
- "UiDevServerUrl": "https://localhost:4201",
+ "UiDevServerUrl": "https://localhost:4202",
   "ReverseProxy": {
     "Routes": {
       "route1": {
@@ -35,7 +35,7 @@ Configure the YARP reverse proxy to match the Vue.js URL. This is only required 
         },
         "Destinations": {
           "cluster1/destination1": {
-            "Address": "https://localhost:4201/"
+            "Address": "https://localhost:4202/"
           }
         }
       }
