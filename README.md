@@ -228,6 +228,8 @@ https://github.com/AzureAD/microsoft-identity-web
 
 https://www.koderhq.com/tutorial/vue/vite/
 
+[Microsoft Entra ID BFF using Vue.JS and ASP.NET Core](https://github.com/damienbod/bff-aspnetcore-vuejs)
+
 https://github.com/isolutionsag/aspnet-react-bff-proxy-example
 
 https://github.com/damienbod/bff-aspnetcore-angular
