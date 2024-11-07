@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BffOidc.Server", "server\BffOidc.Server.csproj", "{6C879A0D-453D-41E2-970B-58B4BD45FB95}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BffOidc.Server", "bff\server\BffOidc.Server.csproj", "{6C879A0D-453D-41E2-970B-58B4BD45FB95}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityProvider", "IdentityProvider\IdentityProvider.csproj", "{16ED6BD1-57B3-4C21-8F1A-4E49EF8EDB00}"
 EndProject
