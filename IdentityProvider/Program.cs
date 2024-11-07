@@ -1,4 +1,3 @@
-using System.IdentityModel.Tokens.Jwt;
 using Fido2Identity;
 using Fido2NetLib;
 using Microsoft.AspNetCore.Identity;
@@ -7,6 +6,7 @@ using Microsoft.IdentityModel.Logging;
 using OpeniddictServer;
 using OpeniddictServer.Data;
 using Quartz;
+using System.IdentityModel.Tokens.Jwt;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 var builder = WebApplication.CreateBuilder(args);
 

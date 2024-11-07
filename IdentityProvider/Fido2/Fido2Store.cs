@@ -1,7 +1,7 @@
-﻿using System.Text;
-using Fido2NetLib;
+﻿using Fido2NetLib;
 using Microsoft.EntityFrameworkCore;
 using OpeniddictServer.Data;
+using System.Text;
 
 namespace Fido2Identity;
 

@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Fido2NetLib.Objects;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json;
-using Fido2NetLib.Objects;
 
 namespace Fido2Identity;
 
