@@ -1,4 +1,7 @@
-# bff-aspnetcore-vuejs
+# Backend for frontend security architecture (BFF) 
+
+Implements an OpenID Connect confidential client client using Vue.JS and a UI and ASP.NET Core to implement the API. The application is secured using an OpenID Connect confidential client using OAuth PKCE. The Vue.js application is served from the ASP.NET Core application using the YARP reverse proxy in development. The Vue.js application is built into the wwwroot of the ASP.NET Core application in production.
+
 
 [![.NET and npm build](https://github.com/damienbod/bff-aspnetcore-oidc-vuejs/actions/workflows/dotnet.yml/badge.svg)](https://github.com/damienbod/bff-aspnetcore-oidc-vuejs/actions/workflows/dotnet.yml) [![License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://github.com/damienbod/bff-aspnetcore-oidc-vuejs/blob/main/LICENSE)
 
