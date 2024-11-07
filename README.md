@@ -9,7 +9,7 @@ The ASP.NET Core project is setup to run in development and production. In produ
 > [!IMPORTANT]  
 > In production, the Vue.js project is built into the **wwwroot** of the .NET project.
 
-![BFF production](https://github.com/damienbod/bff-aspnetcore-oidc-vuejs/blob/main/images/vue-aspnetcore-bff_01.png)
+![BFF production](https://github.com/damienbod/bff-aspnetcore-oidc-vuejs/blob/main/images/vue-aspnetcore-bff.drawio.png)
 
 Configure the YARP reverse proxy to match the Vue.js URL. This is only required in development. I always use HTTPS in development and the port needs to match the Vue.js developement env (vite.config.js).
 
@@ -86,7 +86,7 @@ export default defineConfig({
 
 The development environment is setup to use the default tools for each of the tech stacks. Vue.js is used like recommended. I use Visual Studio code. A YARP reverse proxy is used to integrate the Vue.js development into the backend application.
 
-![BFF development](https://github.com/damienbod/bff-aspnetcore-oidc-vuejs/blob/main/images/vue-aspnetcore-bff-yarp-dev_01.png)
+![BFF development](https://github.com/damienbod/bff-aspnetcore-oidc-vuejs/blob/main/images/vue-aspnetcore-bff-yarp-dev.drawio.png)
 
 > [!NOTE]  
 > Always run in HTTPS, both in development and production
