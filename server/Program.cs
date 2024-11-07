@@ -68,10 +68,10 @@ services.AddControllersWithViews(options =>
 
 services.AddRazorPages().AddMvcOptions(options =>
 {
-    var policy = new AuthorizationPolicyBuilder()
-        .RequireAuthenticatedUser()
-        .Build();
-    options.Filters.Add(new AuthorizeFilter(policy));
+    //var policy = new AuthorizationPolicyBuilder()
+    //    .RequireAuthenticatedUser()
+    //    .Build();
+    //options.Filters.Add(new AuthorizeFilter(policy));
 });
 
 builder.Services.AddReverseProxy()
