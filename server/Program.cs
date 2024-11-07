@@ -1,5 +1,13 @@
 ﻿using BffOidc.Server;
 using BffOidc.Server.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.JsonWebTokens;
+using Microsoft.IdentityModel.Logging;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Microsoft.IdentityModel.Tokens;
+using NetEscapades.AspNetCore.SecurityHeaders.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -62,7 +70,7 @@ services.AddRazorPages().AddMvcOptions(options =>
     //    .RequireAuthenticatedUser()
     //    .Build();
     //options.Filters.Add(new AuthorizeFilter(policy));
-}).AddMicrosoftIdentityUI();
+});
 
 builder.Services.AddReverseProxy()
    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));

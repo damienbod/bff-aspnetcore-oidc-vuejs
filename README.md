@@ -2,8 +2,6 @@
 
 [![.NET and npm build](https://github.com/damienbod/bff-aspnetcore-oidc-vuejs/actions/workflows/dotnet.yml/badge.svg)](https://github.com/damienbod/bff-aspnetcore-oidc-vuejs/actions/workflows/dotnet.yml) [![License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://github.com/damienbod/bff-aspnetcore-oidc-vuejs/blob/main/LICENSE)
 
-[Implement a secure web application using Vue.js and an ASP.NET Core server](https://damienbod.com/2023/10/02/implement-a-secure-web-application-using-vue-js-and-an-asp-net-core-server/)
-
 ## Setup Server 
 
 The ASP.NET Core project is setup to run in development and production. In production, it uses the Vue.js production build deployed to the wwwroot. In development, it uses MS YARP reverse proxy to forward requests.
@@ -11,7 +9,7 @@ The ASP.NET Core project is setup to run in development and production. In produ
 > [!IMPORTANT]  
 > In production, the Vue.js project is built into the **wwwroot** of the .NET project.
 
-![BFF production](https://github.com/damienbod/bff-aspnetcore-vuejs/blob/main/images/vue-aspnetcore-bff_01.png)
+![BFF production](https://github.com/damienbod/bff-aspnetcore-oidc-vuejs/blob/main/images/vue-aspnetcore-bff_01.png)
 
 Configure the YARP reverse proxy to match the Vue.js URL. This is only required in development. I always use HTTPS in development and the port needs to match the Vue.js developement env (vite.config.js).
 
@@ -86,9 +84,9 @@ export default defineConfig({
 
 ## Setup development
 
-The development environment is setup to use the defualt tools for each of the tech stacks. Vue.js is used like recommended. I use Visual Studio code. A YARP reverse proxy is used to integrate the Vue.js development into the backend application.
+The development environment is setup to use the default tools for each of the tech stacks. Vue.js is used like recommended. I use Visual Studio code. A YARP reverse proxy is used to integrate the Vue.js development into the backend application.
 
-![BFF development](https://github.com/damienbod/bff-aspnetcore-vuejs/blob/main/images/vue-aspnetcore-bff-yarp-dev_01.png)
+![BFF development](https://github.com/damienbod/bff-aspnetcore-oidc-vuejs/blob/main/images/vue-aspnetcore-bff-yarp-dev_01.png)
 
 > [!NOTE]  
 > Always run in HTTPS, both in development and production
@@ -97,15 +95,7 @@ The development environment is setup to use the defualt tools for each of the te
 npm start
 ```
 
-## Azure App Registration setup
-
-The application(s) are deployed as one. This is an OpenID Connect confidential client with a user secret or a certification for client assertion.
-
-Use the Web client type on setup.
-
-![BFF Azure registration](https://github.com/damienbod/bff-aspnetcore-angular/blob/main/images/azure-app-registration_01.png)
-
-The OpenID Connect client is setup using **Microsoft.Identity.Web**. This implements the Microsoft Entra ID client. I have created downstream APIs using the OBO flow and a Microsoft Graph client. This could be replaced with any OpenID Connect client and requires no changes in the frontend part of the solution.
+The OpenID Connect client is setup using the default ASP.NET Core OpenID connect handler.
 
 ```csharp
 var scopes = configuration.GetValue<string>("DownstreamApi:Scopes");
