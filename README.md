@@ -98,55 +98,51 @@ npm start
 The OpenID Connect client is setup using the default ASP.NET Core OpenID connect handler.
 
 ```csharp
-var scopes = configuration.GetValue<string>("DownstreamApi:Scopes");
-string[] initialScopes = scopes!.Split(' ');
+services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+})
+.AddCookie()
+.AddOpenIdConnect(options =>
+{
+    builder.Configuration.GetSection("OpenIDConnectSettings").Bind(options);
+    options.Authority = builder.Configuration["OpenIDConnectSettings:Authority"];
+    options.ClientId = builder.Configuration["OpenIDConnectSettings:ClientId"];
+    options.ClientSecret = builder.Configuration["OpenIDConnectSettings:ClientSecret"];
 
-services.AddMicrosoftIdentityWebAppAuthentication(configuration, "MicrosoftEntraID")
-    .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-    .AddMicrosoftGraph("https://graph.microsoft.com/v1.0", initialScopes)
-    .AddInMemoryTokenCaches();
+    options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.ResponseType = OpenIdConnectResponseType.Code;
+
+    options.SaveTokens = true;
+    options.GetClaimsFromUserInfoEndpoint = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        NameClaimType = "name"
+    };
+});
 
 services.AddControllersWithViews(options =>
     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
 
 services.AddRazorPages().AddMvcOptions(options =>
 {
-    //var policy = new AuthorizationPolicyBuilder()
-    //    .RequireAuthenticatedUser()
-    //    .Build();
-    //options.Filters.Add(new AuthorizeFilter(policy));
-}).AddMicrosoftIdentityUI();
+    var policy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+    options.Filters.Add(new AuthorizeFilter(policy));
+});
 ```
 
 Add the Azure App registration settings to the **appsettings.Development.json** and the **ClientSecret** to the user secrets.
 
 ```json
-"MicrosoftEntraID": {
-    "Instance": "https://login.microsoftonline.com/",
-    "Domain": "[Enter the domain of your tenant, e.g. contoso.onmicrosoft.com]",
-    "TenantId": "[Enter 'common', or 'organizations' or the Tenant Id (Obtained from the Azure portal. Select 'Endpoints' from the 'App registrations' blade and use the GUID in any of the URLs), e.g. da41245a5-11b3-996c-00a8-4d99re19f292]",
-    "ClientId": "[Enter the Client Id (Application ID obtained from the Azure portal), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]",
-    "ClientSecret": "[Copy the client secret added to the app from the Azure portal]",
-    "ClientCertificates": [
-    ],
-    // the following is required to handle Continuous Access Evaluation challenges
-    "ClientCapabilities": [ "cp1" ],
-    "CallbackPath": "/signin-oidc"
+"OpenIDConnectSettings": {
+    "Authority": "https://localhost:44318",
+    "ClientId": "oidc-pkce-confidential",
+    "ClientSecret": "oidc-pkce-confidential_secret"
 },
 ```
-
-App Service (linux plan) configuration 
-
-```
-MicrosoftEntraID__Instance               --your-value--
-MicrosoftEntraID__Domain                 --your-value--
-MicrosoftEntraID__TenantId               --your-value--
-MicrosoftEntraID__ClientId               --your-value--
-MicrosoftEntraID__CallbackPath           /signin-oidc
-MicrosoftEntraID__SignedOutCallbackPath  /signout-callback-oidc
-```
-
-The client secret or client certificate needs to be setup, see Microsoft Entra ID documentation.
 
 ## Debugging
 
@@ -164,7 +160,7 @@ dotnet run
 
 Or just open Visual Studio and run the solution.
 
-## github actions build
+## Github actions build
 
 Github actions is used for the DevOps. The build pipeline builds both the .NET project and the Vue.js project using npm. The two projects are built in the same step because the UI project is built into the wwwroot of the server project.
 
@@ -206,12 +202,6 @@ jobs:
       - name: Test
         run: dotnet test --no-build --verbosity normal
 ```
-
-## github actions Azure deployment
-
-The deployment pipeline builds both projects and deployes this to Azure using an Azure App Service. See **azure-webapps-dotnet-core.yml**
-
-deployment test server: https://bff-vue-aspnetcore.azurewebsites.net/
 
 ## Credits and used libraries
 
