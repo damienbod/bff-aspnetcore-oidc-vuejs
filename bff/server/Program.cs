@@ -45,20 +45,19 @@ services.AddAuthentication(options =>
 .AddCookie()
 .AddOpenIdConnect(options =>
 {
-    builder.Configuration.GetSection("OpenIDConnectSettings").Bind(options);
-    options.Authority = builder.Configuration["OpenIDConnectSettings:Authority"];
-    options.ClientId = builder.Configuration["OpenIDConnectSettings:ClientId"];
-    options.ClientSecret = builder.Configuration["OpenIDConnectSettings:ClientSecret"];
+    var oidcConfig = builder.Configuration.GetSection("OpenIDConnectSettings");
+
+    options.Authority = oidcConfig["Authority"];
+    options.ClientId = oidcConfig["ClientId"];
+    options.ClientSecret = oidcConfig["ClientSecret"];
 
     options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.ResponseType = OpenIdConnectResponseType.Code;
 
     options.SaveTokens = true;
     options.GetClaimsFromUserInfoEndpoint = true;
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        NameClaimType = "name"
-    };
+    options.MapInboundClaims = false;
+    options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
 });
 
 services.AddControllersWithViews(options =>
