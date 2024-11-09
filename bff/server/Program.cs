@@ -95,7 +95,6 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseNoUnauthorizedRedirect("/api");
 
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
