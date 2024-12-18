@@ -1,5 +1,8 @@
 ## ASP.NET Core, Vue.js BFF using OpenID Connect Changelog
 
+### 2024-12-18 0.0.2
+- .NET 9
+- OpenIddict 6.0
 
 ### 2024-11-07 0.0.1
 - Initial version using Vue.js (Typescript & Vite) and ASP.NET Core
