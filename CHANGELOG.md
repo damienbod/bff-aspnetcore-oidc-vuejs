@@ -1,5 +1,8 @@
 ## ASP.NET Core, Vue.js BFF using OpenID Connect Changelog
 
+### 2025-05-27 0.0.4
+- Updated packages
+
 ### 2024-12-31 0.0.3
 - Bootstrap 5 used in IDP
 
