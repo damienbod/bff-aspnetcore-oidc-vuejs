@@ -1,5 +1,8 @@
 ## ASP.NET Core, Vue.js BFF using OpenID Connect Changelog
 
+### 2025-12-07 1.0.0
+- .NET 10
+
 ### 2025-08-03 0.0.5
 - Updated packages
 - 
