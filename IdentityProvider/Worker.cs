@@ -1,9 +1,9 @@
 ﻿using OpenIddict.Abstractions;
-using OpeniddictServer.Data;
+using IdentityProvider.Data;
 using System.Globalization;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace OpeniddictServer;
+namespace IdentityProvider;
 
 public class Worker : IHostedService
 {
@@ -25,40 +25,6 @@ public class Worker : IHostedService
         static async Task RegisterApplicationsAsync(IServiceProvider provider)
         {
             var manager = provider.GetRequiredService<IOpenIddictApplicationManager>();
-
-            // API delegated with introspection or CC
-            if (await manager.FindByClientIdAsync("rs_dataEventRecordsApi") == null)
-            {
-                var descriptor = new OpenIddictApplicationDescriptor
-                {
-                    ClientId = "rs_dataEventRecordsApi",
-                    ClientSecret = "dataEventRecordsSecret",
-                    Permissions =
-                    {
-                        Permissions.Endpoints.Introspection,
-                    }
-                };
-
-                await manager.CreateAsync(descriptor);
-            }
-
-            // API application CC
-            if (await manager.FindByClientIdAsync("CC") == null)
-            {
-                await manager.CreateAsync(new OpenIddictApplicationDescriptor
-                {
-                    ClientId = "CC",
-                    ClientSecret = "cc_secret",
-                    DisplayName = "CC for protected API",
-                    Permissions =
-                    {
-                        Permissions.Endpoints.Authorization,
-                        Permissions.Endpoints.Token,
-                        Permissions.GrantTypes.ClientCredentials,
-                        Permissions.Prefixes.Scope + "dataEventRecords"
-                    }
-                });
-            }
 
             // OIDC Code flow confidential client
             if (await manager.FindByClientIdAsync("oidc-pkce-confidential") is null)
