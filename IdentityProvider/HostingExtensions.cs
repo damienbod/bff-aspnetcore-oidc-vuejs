@@ -5,8 +5,8 @@ using IdentityProvider.Data;
 using IdentityProvider.Passkeys;
 using Quartz;
 using Serilog;
-using System.IdentityModel.Tokens.Jwt;
 using static OpenIddict.Abstractions.OpenIddictConstants;
+using Microsoft.IdentityModel.JsonWebTokens;
 
 namespace IdentityProvider;
 
@@ -153,7 +153,7 @@ internal static class HostingExtensions
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
         IdentityModelEventSource.ShowPII = true;
-        JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+        JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
         app.UseSerilogRequestLogging();
 
